@@ -47,6 +47,7 @@
     border-bottom: none;
     border-top: solid;
     border-left: none;
+    border-right: solid;
 }
 #bottomCenter {
     border-bottom: none;
@@ -59,4 +60,12 @@
     border-top: solid;
     border-left: solid;
     border-right: none;
+}
+#cross {
+    font-size: 6em;
+    color: rgb(130, 10, 243);
+}
+#circle {
+    font-size: 4em;
+    color: rgb(68, 214, 11);
 }
