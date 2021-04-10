@@ -1,7 +1,8 @@
 #gameBoard {
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-left: 0;
+    padding-left: 40em;
+    padding-top: 2em;
 }
 
 #gameBoard button{
