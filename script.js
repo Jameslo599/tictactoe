@@ -103,7 +103,7 @@ const gameObject = (() => {
         };
     //Restarts the Game
     const restartGame = () => {
-        gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        gameBoard.splice(0, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8);
         victoryState = 0;
         turnNumber = 0;
         let old_element = document.getElementsByClassName('boardButton');
@@ -288,7 +288,7 @@ const gameObject = (() => {
     };
     return {topLeft, topCenter, topRight,
         centerLeft, center, centerRight,
-    bottomLeft, bottomCenter, bottomRight, startGame, restartGame};
+    bottomLeft, bottomCenter, bottomRight, startGame, restartGame, gameBoard};
 })();
 
 //Generates a player that is used for the game
@@ -325,7 +325,7 @@ start.addEventListener('click', function check() {
 //Restarts all game values and clears the board
 let restart = document.getElementById('restart');
 let restartRound = () => {
-    start = null;
+    start = "";
     gameObject.restartGame();
     gameObject.startGame();
     player = Player('james', originalMarker);
@@ -358,8 +358,11 @@ window.onclick = (event) => {
     if (event.target == resultModal) {
         resultModal.style.display = "none";
         restartRound();
-    }
-}
+        document.getElementById("xWin").setAttribute("hidden", true);
+        document.getElementById("oWin").setAttribute("hidden", true);
+        document.getElementById("tieGame").setAttribute("hidden", true)
+    };
+};
 
 //Sends custom names and markers to the display and restarts the round
 let form = document.getElementById('form');
