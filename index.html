@@ -10,18 +10,20 @@
         <link href="css/normalize.css" rel="stylesheet" type="text/css" media="all">
         <link href="css/main.css" rel="stylesheet" type="text/css" media="all">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+        <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
+        
     </header>
     <div id = "infoContainer">
     <div id = "names">
         <h2 id = "player1Display">Player 1 (O)</h2>
         <h2 id = "player2Display">Player 2 (X)</h2>
-        <button>Player Names</button>
+        <button class = "infoButtons">Edit Player Names</button>
     </div>
     <div id = "startRestart">
-        <button id = "start">Start</button>
-        <button id = "restart">Restart</button>
+        <button id = "start" class = "infoButtons">Start</button>
+        <button id = "restart" class = "infoButtons">Restart</button>
     </div></div>
-    <div id = "modalContainer" class = "modal">
+    <div id = "modalContainer" class = "modal puff-in-center">
         <form id = "form" class = "formContent">
             <span id = "close" class = "close"><i class="fas fa-times"></i></span>
         <h1>Enter Player Names
@@ -38,6 +40,11 @@
         <br>
         <input id = "submitButton" type = "submit" name = "submission">
         </form>
+    </div>
+    <div id = "resultModal" class = "">
+        <h1 id = "xWin" hidden>X Wins!</h1>
+        <h1 id = "oWin" hidden>O Wins!</h1>
+        <h1 id = "tieGame" hidden>Tie Game</h1>
     </div>
     <div id = "gameBoard">
         <button id = "topLeft" class = "boardButton"></button>

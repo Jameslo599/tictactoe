@@ -2,86 +2,91 @@ const gameObject = (() => {
     let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     let victoryState = 0;
     let turnNumber = 0;
-    let cross = document.createElement("i");
-        cross.id = "cross";
-        cross.className = "fal fa-times";
-    let circle = document.createElement("i");
-        circle.id = "circle";
-        circle.className = "far fa-circle";
+    let resultModal = document.getElementById('resultModal');
     //Registers a victory for three 'X's in a row
     const _crossVictory = () => {
         if (gameBoard[0] == 'X' && gameBoard[1] == 'X' && gameBoard[2] == 'X') {
-            console.log('You win!');
+            document.getElementById("xWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'X' && gameBoard[3] == 'X' && gameBoard[6] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'X' && gameBoard[4] == 'X' && gameBoard[8] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[1] == 'X' && gameBoard[4] == 'X' && gameBoard[7] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'X' && gameBoard[4] == 'X' && gameBoard[6] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'X' && gameBoard[5] == 'X' && gameBoard[8] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[3] == 'X' && gameBoard[4] == 'X' && gameBoard[5] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[6] == 'X' && gameBoard[7] == 'X' && gameBoard[8] == 'X') {
-            console.log('You win!');
+            resultModal.style.display = "block";
             victoryState = 1;
         };
     };
     //Registers a victory for three 'O's in a row
     const _circleVictory = () => {
         if (gameBoard[0] == 'O' && gameBoard[1] == 'O' && gameBoard[2] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'O' && gameBoard[3] == 'O' && gameBoard[6] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'O' && gameBoard[4] == 'O' && gameBoard[8] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[1] == 'O' && gameBoard[4] == 'O' && gameBoard[7] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'O' && gameBoard[4] == 'O' && gameBoard[6] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'O' && gameBoard[5] == 'O' && gameBoard[8] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[3] == 'O' && gameBoard[4] == 'O' && gameBoard[5] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[6] == 'O' && gameBoard[7] == 'O' && gameBoard[8] == 'O') {
-            console.log('You win!');
+            document.getElementById("oWin").removeAttribute("hidden");
+            resultModal.style.display = "block";
             victoryState = 1;
         };
     };
     //Registers a tie if nobody can get three in a row
     const _tieGame = () => {
         if (victoryState == 0 && turnNumber == 9) {
-                console.log('tie');
+            document.getElementById("tieGame").removeAttribute("hidden");
+            resultModal.style.display = "block";
         } else {};
     };
     //Populates a 'X'
     const _insertX = (location) => {
         let cross = document.createElement("i");
         cross.id = "cross";
-        cross.className = "fal fa-times";
+        cross.className = "fal fa-times puff-in-center";
         document.getElementById(`${location}`).appendChild(cross);
     };
     //Populates a 'O'
     const _insertO = (location) => {
         let circle = document.createElement("i");
         circle.id = "circle";
-        circle.className = "far fa-circle";
+        circle.className = "far fa-circle puff-in-center";
         document.getElementById(`${location}`).appendChild(circle);
     }
     //Starts the game
@@ -308,16 +313,17 @@ const gameFlow = (() => {
                 currentPlayer = 1;
                 }; 
     };
-     
     return {swapPlayers};
 })();
 
+//Click button to start the game
 let start = document.getElementById('start');
-let restart = document.getElementById('restart');
 start.addEventListener('click', function check() {
     gameObject.startGame();
     start.removeEventListener('click', check)});
 
+//Restarts all game values and clears the board
+let restart = document.getElementById('restart');
 let restartRound = () => {
     start = null;
     gameObject.restartGame();
@@ -327,27 +333,39 @@ let restartRound = () => {
         currentPlayer = 1;
     } else { currentPlayer = 2;}
     };
-
 restart.addEventListener('click', restartRound)
 
-
+//Info Modal
 let playerName = document.getElementById('names');
 let modal = document.getElementById('modalContainer');
 let span = document.getElementById('close');
+//Populates the modal
 playerName.onclick = () => {
     modal.style.display = 'block';
 }
+//Closes modal
 span.onclick = () => {
     modal.style.display = "none";
 };
-window.onclick = function(event) {
+//Closes modal when clicking outside of border
+window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
+//Closes results modal when clicking outside of the text
+window.onclick = (event) => {
+    if (event.target == resultModal) {
+        resultModal.style.display = "none";
+        restartRound();
+    }
+}
+
+//Sends custom names and markers to the display and restarts the round
 let form = document.getElementById('form');
 let submitForm = (event) => {
     event.preventDefault();
+    modal.style.display = "none";
     let player1Display = document.getElementById('player1Display');
     let customPlayer1 = document.getElementById('player1').value;
     player1Display.textContent = customPlayer1;
@@ -366,5 +384,5 @@ let submitForm = (event) => {
         restartRound();
     };
 };
-
 form.addEventListener('submit', submitForm);
+
