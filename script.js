@@ -288,7 +288,7 @@ const gameObject = (() => {
     };
     return {topLeft, topCenter, topRight,
         centerLeft, center, centerRight,
-    bottomLeft, bottomCenter, bottomRight, startGame, restartGame, gameBoard};
+    bottomLeft, bottomCenter, bottomRight, startGame, restartGame};
 })();
 
 //Generates a player that is used for the game
@@ -325,7 +325,7 @@ start.addEventListener('click', function check() {
 //Restarts all game values and clears the board
 let restart = document.getElementById('restart');
 let restartRound = () => {
-    start = "";
+    //start = "";
     gameObject.restartGame();
     gameObject.startGame();
     player = Player('james', originalMarker);
@@ -350,7 +350,7 @@ span.onclick = () => {
 
 //Closes results modal when clicking outside of the text
 window.onclick = (event) => {
-    if (event.target == resultModal || modal) {
+    if (event.target == resultModal) {
         resultModal.style.display = "none";
         restartRound();
         document.getElementById("xWin").setAttribute("hidden", true);
