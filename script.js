@@ -336,7 +336,7 @@ let restartRound = () => {
 restart.addEventListener('click', restartRound)
 
 //Info Modal
-let playerName = document.getElementById('names');
+let playerName = document.getElementById('editButton');
 let modal = document.getElementById('modalContainer');
 let span = document.getElementById('close');
 //Populates the modal
@@ -347,15 +347,10 @@ playerName.onclick = () => {
 span.onclick = () => {
     modal.style.display = "none";
 };
-//Closes modal when clicking outside of border
-window.onclick = (event) => {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+
 //Closes results modal when clicking outside of the text
 window.onclick = (event) => {
-    if (event.target == resultModal) {
+    if (event.target == resultModal || modal) {
         resultModal.style.display = "none";
         restartRound();
         document.getElementById("xWin").setAttribute("hidden", true);
