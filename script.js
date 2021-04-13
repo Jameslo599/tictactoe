@@ -1,7 +1,14 @@
 const gameObject = (() => {
-    const gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     let victoryState = 0;
     let turnNumber = 0;
+    let cross = document.createElement("i");
+        cross.id = "cross";
+        cross.className = "fal fa-times";
+    let circle = document.createElement("i");
+        circle.id = "circle";
+        circle.className = "far fa-circle";
+    //Registers a victory for three 'X's in a row
     const _crossVictory = () => {
         if (gameBoard[0] == 'X' && gameBoard[1] == 'X' && gameBoard[2] == 'X') {
             console.log('You win!');
@@ -29,6 +36,7 @@ const gameObject = (() => {
             victoryState = 1;
         };
     };
+    //Registers a victory for three 'O's in a row
     const _circleVictory = () => {
         if (gameBoard[0] == 'O' && gameBoard[1] == 'O' && gameBoard[2] == 'O') {
             console.log('You win!');
@@ -56,23 +64,53 @@ const gameObject = (() => {
             victoryState = 1;
         };
     };
+    //Registers a tie if nobody can get three in a row
     const _tieGame = () => {
         if (victoryState == 0 && turnNumber == 9) {
                 console.log('tie');
         } else {};
-    }
+    };
+    //Populates a 'X'
     const _insertX = (location) => {
         let cross = document.createElement("i");
         cross.id = "cross";
         cross.className = "fal fa-times";
         document.getElementById(`${location}`).appendChild(cross);
-    }  
+    };
+    //Populates a 'O'
     const _insertO = (location) => {
         let circle = document.createElement("i");
         circle.id = "circle";
         circle.className = "far fa-circle";
         document.getElementById(`${location}`).appendChild(circle);
     }
+    //Starts the game
+    const startGame = () => {
+        gameObject.topLeft();
+        gameObject.topCenter();
+        gameObject.topRight();
+        gameObject.centerLeft();
+        gameObject.center();
+        gameObject.centerRight();
+        gameObject.bottomLeft();
+        gameObject.bottomCenter();
+        gameObject.bottomRight();
+        };
+    //Restarts the Game
+    const restartGame = () => {
+        gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        victoryState = 0;
+        turnNumber = 0;
+        let old_element = document.getElementsByClassName('boardButton');
+        for (let i=0; i<old_element.length; i++) {
+           while (old_element[i].firstChild) {
+               old_element[i].removeChild(old_element[i].firstChild);
+           }
+            let new_element = old_element[i].cloneNode(true);
+            old_element[i].parentNode.replaceChild(new_element, old_element[i]);
+        };
+    };
+    //Allows top left block to spawn either 'X' or 'O'
     const topLeft = () => {
         let marker = document.getElementById('topLeft');
         marker.addEventListener('click', function check() {
@@ -91,6 +129,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows top center block to spawn either 'X' or 'O'
     const topCenter = () => {
         let marker = document.getElementById('topCenter');
         marker.addEventListener('click', function check() {
@@ -109,6 +148,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows top right block to spawn either 'X' or 'O'
     const topRight = () => {
         let marker = document.getElementById('topRight');
         marker.addEventListener('click', function check() {
@@ -127,6 +167,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows center left block to spawn either 'X' or 'O'
     const centerLeft = () => {
         let marker = document.getElementById('centerLeft');
         marker.addEventListener('click', function check() {
@@ -145,6 +186,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows center block to spawn either 'X' or 'O'
     const center = () => {
         let marker = document.getElementById('center');
         marker.addEventListener('click', function check() {
@@ -163,6 +205,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows center right block to spawn either 'X' or 'O'
     const centerRight = () => {
         let marker = document.getElementById('centerRight');
         marker.addEventListener('click', function check() {
@@ -181,6 +224,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows bottom left block to spawn either 'X' or 'O'
     const bottomLeft = () => {
         let marker = document.getElementById('bottomLeft');
         marker.addEventListener('click', function check() {
@@ -199,6 +243,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows bottom center block to spawn either 'X' or 'O'
     const bottomCenter = () => {
         let marker = document.getElementById('bottomCenter');
         marker.addEventListener('click', function check() {
@@ -217,6 +262,7 @@ const gameObject = (() => {
             marker.removeEventListener('click', check);
         });
     };
+    //Allows bottom right block to spawn either 'X' or 'O'
     const bottomRight = () => {
         let marker = document.getElementById('bottomRight');
         marker.addEventListener('click', function check() {
@@ -237,9 +283,10 @@ const gameObject = (() => {
     };
     return {topLeft, topCenter, topRight,
         centerLeft, center, centerRight,
-    bottomLeft, bottomCenter, bottomRight};
+    bottomLeft, bottomCenter, bottomRight, startGame, restartGame};
 })();
 
+//Generates a player that is used for the game
 const Player = (name, marker) => {
     let getName = () => name;
     let getMarker = () => marker;
@@ -247,30 +294,77 @@ const Player = (name, marker) => {
 };
 
 let player = Player('james', 'O');
+originalMarker = 'O';
+let currentPlayer = 1;
 
+//Allows regular alternation between players during the game
 const gameFlow = (() => {
-    let currentPlayer = 1;
     const swapPlayers = () => {
-    if (currentPlayer == 1) {
-        player = Player('sivanna', 'X');
-        currentPlayer = 2;
-        return player;
-        } else if (currentPlayer == 2) {
-            player = Player('james', 'O');
-            currentPlayer = 1;
-            return player;
-            }; 
-    }; return {swapPlayers};
+        if (currentPlayer == 1) {
+            player = Player('sivanna', 'X');
+            currentPlayer = 2;
+            } else if (currentPlayer == 2) {
+                player = Player('james', 'O');
+                currentPlayer = 1;
+                }; 
+    };
+     
+    return {swapPlayers};
 })();
 
-window.onload = () => {
-    gameObject.topLeft();
-    gameObject.topCenter();
-    gameObject.topRight();
-    gameObject.centerLeft();
-    gameObject.center();
-    gameObject.centerRight();
-    gameObject.bottomLeft();
-    gameObject.bottomCenter();
-    gameObject.bottomRight();
+let start = document.getElementById('start');
+let restart = document.getElementById('restart');
+start.addEventListener('click', function check() {
+    gameObject.startGame();
+    start.removeEventListener('click', check)});
+
+let restartRound = () => {
+    start = null;
+    gameObject.restartGame();
+    gameObject.startGame();
+    player = Player('james', originalMarker);
+    if (originalMarker == 'O') {
+        currentPlayer = 1;
+    } else { currentPlayer = 2;}
+    };
+
+restart.addEventListener('click', restartRound)
+
+
+let playerName = document.getElementById('names');
+let modal = document.getElementById('modalContainer');
+let span = document.getElementById('close');
+playerName.onclick = () => {
+    modal.style.display = 'block';
+}
+span.onclick = () => {
+    modal.style.display = "none";
 };
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+let form = document.getElementById('form');
+let submitForm = (event) => {
+    event.preventDefault();
+    let player1Display = document.getElementById('player1Display');
+    let customPlayer1 = document.getElementById('player1').value;
+    player1Display.textContent = customPlayer1;
+    let player2Display = document.getElementById('player2Display');
+    let customPlayer2 = document.getElementById('player2').value;
+    player2Display.textContent = customPlayer2;
+    let checkBox = document.getElementById('mainBox');
+    if (checkBox.checked == true) {
+        player = Player(customPlayer1, 'X');
+        originalMarker = 'X';
+        currentPlayer = 2;
+        restartRound();
+    } else {
+        player = Player(customPlayer1, 'O');
+        originalMarker = 'O';
+        restartRound();
+    };
+};
+
+form.addEventListener('submit', submitForm);

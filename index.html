@@ -11,16 +11,44 @@
         <link href="css/main.css" rel="stylesheet" type="text/css" media="all">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     </header>
+    <div id = "infoContainer">
+    <div id = "names">
+        <h2 id = "player1Display">Player 1 (O)</h2>
+        <h2 id = "player2Display">Player 2 (X)</h2>
+        <button>Player Names</button>
+    </div>
+    <div id = "startRestart">
+        <button id = "start">Start</button>
+        <button id = "restart">Restart</button>
+    </div></div>
+    <div id = "modalContainer" class = "modal">
+        <form id = "form" class = "formContent">
+            <span id = "close" class = "close"><i class="fas fa-times"></i></span>
+        <h1>Enter Player Names
+        </h1>
+        <input type = "text" id = "player1" 
+            placeholder = "Player 1 Name" name = "player1" required>
+        <br>
+        <label id = "switch" class = "switch">Player 1 Marker:
+            <input id = "mainBox" type = "checkbox"> X (checked) O (unchecked)
+        </label>
+        <br>
+        <input type = "text" id = "player2" 
+            placeholder = "Player 2 Name" name = "player2" required>
+        <br>
+        <input id = "submitButton" type = "submit" name = "submission">
+        </form>
+    </div>
     <div id = "gameBoard">
-        <button id = "topLeft"></button>
-        <button id = "topCenter"></button>
-        <button id = "topRight"></button>
-        <button id = "centerLeft"></button>
-        <button id = "center"></button>
-        <button id = "centerRight"></button>
-        <button id = "bottomLeft"></button>
-        <button id = "bottomCenter"></button>
-        <button id = "bottomRight"></button>
+        <button id = "topLeft" class = "boardButton"></button>
+        <button id = "topCenter" class = "boardButton"></button>
+        <button id = "topRight" class = "boardButton"></button>
+        <button id = "centerLeft" class = "boardButton"></button>
+        <button id = "center" class = "boardButton"></button>
+        <button id = "centerRight" class = "boardButton"></button>
+        <button id = "bottomLeft" class = "boardButton"></button>
+        <button id = "bottomCenter" class = "boardButton"></button>
+        <button id = "bottomRight" class = "boardButton"></button>
     </div>
 
 </body>
