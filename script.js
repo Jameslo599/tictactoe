@@ -1,5 +1,5 @@
 const gameObject = (() => {
-    let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let gameBoard = ["", "", "", "", "", "", "", "", ""];
     let victoryState = 0;
     let turnNumber = 0;
     let resultModal = document.getElementById('resultModal');
@@ -10,24 +10,31 @@ const gameObject = (() => {
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'X' && gameBoard[3] == 'X' && gameBoard[6] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[0] == 'X' && gameBoard[4] == 'X' && gameBoard[8] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[1] == 'X' && gameBoard[4] == 'X' && gameBoard[7] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'X' && gameBoard[4] == 'X' && gameBoard[6] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[2] == 'X' && gameBoard[5] == 'X' && gameBoard[8] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[3] == 'X' && gameBoard[4] == 'X' && gameBoard[5] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         } else if (gameBoard[6] == 'X' && gameBoard[7] == 'X' && gameBoard[8] == 'X') {
+            document.getElementById("xWin").removeAttribute("hidden");
             resultModal.style.display = "block";
             victoryState = 1;
         };
@@ -88,7 +95,7 @@ const gameObject = (() => {
         circle.id = "circle";
         circle.className = "far fa-circle puff-in-center";
         document.getElementById(`${location}`).appendChild(circle);
-    }
+    };
     //Starts the game
     const startGame = () => {
         gameObject.topLeft();
@@ -383,4 +390,8 @@ let submitForm = (event) => {
     };
 };
 form.addEventListener('submit', submitForm);
+
+
+
+
 
