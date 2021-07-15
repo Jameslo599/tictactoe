@@ -1,0 +1,30 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Tic-Tac-Toe Created as part of The Odin Project curriculum.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameslo599/tictactoe.git"
+  },
+  "author": "James Lo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jameslo599/tictactoe/issues"
+  },
+  "homepage": "https://github.com/jameslo599/tictactoe#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
